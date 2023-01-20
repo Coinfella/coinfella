@@ -60,7 +60,7 @@ const Home: NextPage = () => {
               }
             }}>
               <h1 className={styles.title}>
-                Welcome to NxtPay
+                Welcome to 
               </h1>
 
               <p className={styles.description}>
@@ -72,13 +72,13 @@ const Home: NextPage = () => {
         <motion.div animate={animation}>
           <div style={{height:"100vh"}}>
           <h1 className={styles.title}>
-            Why NxtPay?
+            Why Coinfella?
           </h1>
           <p className={styles.descriptionAbout}>
-            To buy and send crypto, you currently either need a Crypto Wallet like Metamask, and Phantom, or you need an account on an exchange like Crypto.com or Coinbase. On NxtPay you can create an account with your email, and pay your Crypto invoices or make a one time payment.
+            To buy and send crypto, you currently either need a Crypto Wallet like Metamask, and Phantom, or you need an account on an exchange like Crypto.com or Coinbase. On CoinFella you can create an account with your email, and pay your Crypto invoices or make a one time payment.
           </p>
           <p className={styles.descriptionAbout} style={{marginBottom:"5%"}}>
-            Freelancers have little access to tools that allow customers to pay them in crypto. NxtPay will allow Web3 freelancers to get paid in their desired coin easily.
+            Freelancers have little access to tools that allow customers to pay them in crypto. CoinFella will allow Web3 freelancers to get paid in their desired coin easily.
           </p>
           </div>
           </motion.div>
@@ -87,7 +87,7 @@ const Home: NextPage = () => {
             <div className={styles.card}>
               <h2>Create Invoices</h2>
               <img src="invoice.png" className={styles.imgs}></img>
-              <p>With NxtPay you can create invoices and specify the Crypto you desire for payment, and a you will receive a link with a payment wall for the payee.</p>
+              <p>With CoinFella you can create invoices and specify the Crypto you desire for payment, and a you will receive a link with a payment wall for the payee.</p>
             </div>
 
             <div className={styles.card}>
@@ -99,7 +99,7 @@ const Home: NextPage = () => {
             <div className={styles.card}>
               <h2>Fiat to Crypto</h2>
               <img src="payment.png" className={styles.imgs}></img>
-              <p>Send a One Time Crypto Payment with your Credit Card. NxtPay swaps your Fiat for the Crypto that the Biller desires to be paid in.</p>
+              <p>Send a One Time Crypto Payment with your Credit Card. CoinFella swaps your Fiat for the Crypto that the Biller desires to be paid in.</p>
             </div>
           </div>
           </div>

@@ -124,7 +124,7 @@ export default function Layout({ children }: LayoutProps) {
     return (
       <div>
         <Head>
-          <title>NxtPay</title>
+          <title>CoinFella</title>
           <meta name="description" content="Pay in fiat, receive crypto." />
           <link rel="icon" href="/favicon.ico" />
         </Head>
@@ -148,7 +148,7 @@ export default function Layout({ children }: LayoutProps) {
                   <div>
                     <Image
                       src="/icon.png"
-                      alt="NxtPay Logo"
+                      alt="CoinFella Logo"
                       width={50}
                       height={50}
                     />
@@ -195,13 +195,13 @@ export default function Layout({ children }: LayoutProps) {
         <div>{children}</div>
         <footer className={styles.footer}>
           <a
-            href="https://Nxtpay.com"
+            href="https://coinfella.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
           >
             Copyright ©
             <span className={styles.logo}>
-              <Image src="/icon.png" alt="NxtPay Logo" width={50} height={50} />
+              <Image src="/icon.png" alt="CoinFella Logo" width={50} height={50} />
             </span>
           </a>
         </footer>

@@ -119,7 +119,7 @@ const Invoicing: NextPage = () => {
         {session && session.user && 
         <div className={styles.container} style={{minHeight:"85vh"}}>
         <Grid>
-            <Grid.Col sm={3}><h1 style={{marginLeft:"2%"}}>NxtPay Invoicing</h1></Grid.Col>
+            <Grid.Col sm={3}><h1 style={{marginLeft:"2%"}}>CoinFella Invoicing</h1></Grid.Col>
             <Grid.Col sm={8}></Grid.Col>
             <Grid.Col sm={1}><Link href="/create"><Button style={{marginTop:"20%"}}>Create +</Button></Link></Grid.Col>
         </Grid>

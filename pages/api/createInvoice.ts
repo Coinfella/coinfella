@@ -54,7 +54,7 @@ const sendEmail = async (
      from: email,//todo: replace with coinfella email
      subject: `${username} sent you an invoice from CoinFella.`,
      //text: `Email => ${email}`,
-     html: `Dear ${payerEmail}, ${username} would like to be paid through Coinfella.<br> Payment Request Details: <br> Invoice Id: ${invoiceId} <br> Category: ${category} <br> Currency: ${currency} <br> Amount: ${amount} <br> <a href='http://nxtpay.vercel.app/invoice/${invoiceId}'>Pay</a>`,
+     html: `Dear ${payerEmail}, ${username} would like to be paid through Coinfella.<br> Payment Request Details: <br> Invoice Id: ${invoiceId} <br> Category: ${category} <br> Currency: ${currency} <br> Amount: ${amount} <br> <a href='http://coinfella.vercel.app/invoice/${invoiceId}'>Pay</a>`,
    };
    console.log(data);
     try{
