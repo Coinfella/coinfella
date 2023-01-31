@@ -1,115 +1,263 @@
-import type { NextPage } from 'next'
-import Link from 'next/link';
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import {useEffect} from 'react';
+import axios from "axios";
+import Image from "next/image";
+import React, { useState } from "react";
+import Confetti from "react-confetti";
+import { Button } from "../components/Button";
+import { Dialog } from "../components/Dialog";
+import { Input } from "../components/Inputs";
+import { Spinner } from "../components/Spinner";
+
 import {
-  createStyles,
-  Menu,
-  Center,
-  Header,
-  Container,
-  Group,
-  Button,
-  Burger, Grid
-} from '@mantine/core';
-import { TwitterIcon, DiscordIcon } from '@mantine/ds';
-import {motion, useAnimation} from "framer-motion";
-import {useInView} from "react-intersection-observer";
-
-const Home: NextPage = () => {
-  const {ref, inView} = useInView();
-  const animation = useAnimation();
-
-  useEffect(() => {
-    console.log("use effect , inView = " , inView);
-    if(inView){
-      animation.start({
-        x: 0,
-        transition: {
-          type: "spring",
-          duration: 1,
-          bounce: 0.3
-        }
-      })
-    }else{
-      animation.start({
-        x:"-100vw"
-      })
-    }
-  }, [inView]);
-  
+  ANALYTICS_ICON,
+  BUTTON_BG,
+  COIN_FACE,
+  COIN_JUMP,
+  DASHBOARD_SC,
+  DOCS_ICON,
+  FIAT_TO_CRYPTO_ICON,
+  INTERNATIONAL_ICON,
+  LANDING_BANK,
+  LANDING_JUMP,
+  PAYLINK_ICON,
+  PEOPLE,
+  PEOPLE_MAIN,
+  REQUEST_PAYMENT_ICON,
+} from "../utils/assets";
+import { showToast } from "../utils/toast";
+import { useAxios } from "../utils/useAxios";
+const Feature = ({
+  image,
+  description,
+  title,
+}: {
+  image: string;
+  description: string;
+  title: string;
+}) => {
   return (
-    <div className={styles.container}>
-
-      <main className={styles.main}>
-        <div className={styles.landing}>
-          <motion.div
-            initial="hidden" animate="visible" variants ={{
-              hidden :{
-                scale: 0.3,
-                opacity: 0
-              },
-              visible: {
-                scale: 1,
-                opacity: 1,
-                transition: {
-                  delay: 1
-                }
-              }
-            }}>
-              <h1 className={styles.title}>
-                Welcome to 
-              </h1>
-
-              <p className={styles.description}>
-                Pay in fiat, receive crypto.
-              </p>
-          </motion.div>
-        </div>
-        <div className={styles.about} id="About" ref={ref}>
-        <motion.div animate={animation}>
-          <div style={{height:"100vh"}}>
-          <h1 className={styles.title}>
-            Why Coinfella?
-          </h1>
-          <p className={styles.descriptionAbout}>
-            To buy and send crypto, you currently either need a Crypto Wallet like Metamask, and Phantom, or you need an account on an exchange like Crypto.com or Coinbase. On CoinFella you can create an account with your email, and pay your Crypto invoices or make a one time payment.
-          </p>
-          <p className={styles.descriptionAbout} style={{marginBottom:"5%"}}>
-            Freelancers have little access to tools that allow customers to pay them in crypto. CoinFella will allow Web3 freelancers to get paid in their desired coin easily.
-          </p>
-          </div>
-          </motion.div>
-
-          <div className={styles.grid} id="features">
-            <div className={styles.card}>
-              <h2>Create Invoices</h2>
-              <img src="invoice.png" className={styles.imgs}></img>
-              <p>With CoinFella you can create invoices and specify the Crypto you desire for payment, and a you will receive a link with a payment wall for the payee.</p>
-            </div>
-
-            <div className={styles.card}>
-              <h2>Pay Web3 Invoices in Fiat</h2>
-              <img src="CARD.png" className={styles.imgs}></img>
-              <p>As the Payee, you will receive an e-mail with a link where you can seemlessly pay your bill with your credit card, and all the token swapping is handled behind the scenes.</p>
-            </div>
-
-            <div className={styles.card}>
-              <h2>Fiat to Crypto</h2>
-              <img src="payment.png" className={styles.imgs}></img>
-              <p>Send a One Time Crypto Payment with your Credit Card. CoinFella swaps your Fiat for the Crypto that the Biller desires to be paid in.</p>
-            </div>
-          </div>
-          </div>
-        <div className={styles.callToAction}>
-          <h2>Keep up with us.</h2>
-          <Link href="https://twitter.com/" target="_blank"><TwitterIcon size={25} style={{marginRight:"20px"}}></TwitterIcon></Link>
-        </div>
-      </main>
+    <div className="flex gap-8 rounded-xl bg-[#181818] px-8 py-6">
+      <div className="flex h-16 max-w-[4rem] flex-1 place-content-center rounded-full bg-primary">
+        <Image height={30} width={30} src={image} objectFit="contain" />
+      </div>
+      <div className="flex flex-1 flex-col">
+        <div className="text-xl font-medium">{title}</div>
+        <div className="text-gray-400">{description}</div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+const Home = () => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [waitListUrl, setWaitListUrl] = useState("");
+  const [signUpSuccess, setSignUpSuccess] = useState(false);
+  const { cancel, error, loading, refetch } = useAxios<{
+    success: boolean;
+  }>(`api/waitlist/${waitListUrl}`, "get", { disabled: true });
+
+  const signUpToWaitList = async () => {
+    if (!waitListUrl.length) return;
+    const refetchData = await refetch();
+
+    if (refetchData?.success) {
+      setSignUpSuccess(true);
+      setIsDialogOpen(false);
+      showToast("You are in the Waitlist!, Hooray!!!", { type: "success" });
+
+      setTimeout(() => {
+        setSignUpSuccess(false);
+      }, 3000);
+    }
+    if (error) {
+      showToast("Couldn't sign you up!, Try again later", { type: "error" });
+    }
+  };
+
+  return (
+    <>
+      {signUpSuccess && (
+        <Confetti
+          width={global?.window !== undefined ? global?.window?.innerWidth : 0}
+          height={global?.window !== undefined ? global?.window?.innerWidth : 0}
+          recycle={false}
+          numberOfPieces={300}
+        />
+      )}
+      <div className="mx-auto mt-20 flex max-w-2xl flex-col items-center">
+        <div>
+          <Image src={COIN_FACE} />
+        </div>
+        <h1 className="mt-4 text-4xl font-bold">
+          The easiest way to get paid in crypto
+        </h1>
+        <h2 className="mt-2 text-center text-xl text-gray-400">
+          We make it easy for creators & projects to get paid in crypto. Your
+          clients can easily use their card to pay and you get paid in your
+          favorite crypto!
+        </h2>
+      </div>
+      <div className="mx-auto mt-40 flex w-screen justify-center">
+        <div className="relative">
+          <div className="absolute right-[18.5rem] -top-[6.5rem]  hidden h-[400px] w-[400px] md:block ">
+            <Image src={LANDING_BANK} />
+          </div>
+          <Button
+            onClick={() => setIsDialogOpen(true)}
+            size="large"
+            color="primary"
+          >
+            Join Waitlist
+          </Button>
+          <div className="absolute left-[18.5rem] -bottom-7 hidden  w-[500px] md:block">
+            <Image src={LANDING_JUMP} />
+          </div>
+        </div>
+      </div>
+      <div className="mx-auto mt-60  grid max-w-6xl grid-cols-2">
+        <div className="max-w-lg">
+          <Image src={DASHBOARD_SC} />
+        </div>
+        <div className="ml-auto max-w-sm">
+          <h3 className="mt-4 text-3xl font-bold">
+            A simple <span className="text-primary">dashboard</span> for
+            creating, analyzing invoices and requests.
+          </h3>
+          <div className="mt-2 text-xl text-gray-400">
+            We make it easy for creators & projects to get paid in crypto. Your
+            clients can easily use their card to pay and you get paid in your
+            favorite crypto!
+          </div>
+        </div>
+      </div>
+      <div className="mx-auto mt-60  grid max-w-6xl grid-cols-2">
+        <div className="mr-auto max-w-sm">
+          <h3 className="mt-4 text-3xl font-bold">
+            We <span className="text-primary">don’t hold</span> any of your
+            funds at any point of the process!
+          </h3>
+          <div className="mt-2 text-xl text-gray-400">
+            By using an on ramp service, we take the fiat payment, do the
+            conversion and send the equivalent amount in crypto. We don’t hold
+            any of your funds in our accounts at any given point in the process!
+          </div>
+        </div>
+        <div className="max-w-lg">
+          <Image src={PEOPLE_MAIN} />
+        </div>
+      </div>
+      <div className="mx-auto mt-60  grid max-w-6xl grid-cols-2">
+        <div className="max-w-lg">
+          <Image src={PEOPLE} />
+        </div>
+        <div className="ml-auto max-w-sm">
+          <h3 className="mt-4 text-3xl font-bold">
+            Share a unique link or and email with an{" "}
+            <span className="text-primary">automated invoice</span> to your
+            clients!
+          </h3>
+          <div className="mt-2 text-xl text-gray-400">
+            Send an email or share an unique link for the invoice and payment
+            request so your clients can easily get you paid using their card
+          </div>
+        </div>
+      </div>
+      <div
+        className="mx-auto mt-40 grid  max-w-6xl grid-cols-2 pt-20"
+        id="pricing"
+      >
+        <div className="mr-auto max-w-sm">
+          <h3 className="mt-4 text-3xl font-bold">
+            Only <span className="text-primary">1% fee </span>for all
+            transactions!
+          </h3>
+          <div className="mt-2 text-xl text-gray-400">
+            There are no hidden fees or over complicated pricing models! We take
+            only 1% off every transaction! The cheapest by far!
+          </div>
+        </div>
+        <div className="max-w-lg">
+          <Image src={COIN_JUMP} />
+        </div>
+      </div>
+      <div className="mx-auto mt-40  max-w-6xl" id="features">
+        <div className="text-2xl font-bold">Bunch of features + more</div>
+        <div className="grid grid-cols-3 gap-10 pt-10">
+          <Feature
+            title="Analytics"
+            description="Track your payments, and more with our advanced analytics dashboard."
+            image={ANALYTICS_ICON}
+          />
+          <Feature
+            title="Request Payment"
+            description="Request payments from anyone in the world in fiat, and get paid in crypto "
+            image={REQUEST_PAYMENT_ICON}
+          />
+          <Feature
+            title="Invoicing"
+            description="Send invoices to your customers, and get paid in crypto when they pay with card."
+            image={DOCS_ICON}
+          />
+          <Feature
+            title="Fiat to Crypto"
+            description="Get paid in fiat that gets converted to crypto. "
+            image={FIAT_TO_CRYPTO_ICON}
+          />
+          <Feature
+            title="Paylinks (soon)"
+            description="Share a link with your clients/fans to receive crypto when they use a card, like a tip jar. "
+            image={PAYLINK_ICON}
+          />
+          <Feature
+            title="International"
+            description="coinfella is the fastest way to receive crypto payments from anyone internationally. "
+            image={INTERNATIONAL_ICON}
+          />
+        </div>
+      </div>
+      <div
+        className="mx-auto my-24 flex max-w-2xl flex-col items-center rounded-lg bg-primary bg-cover bg-no-repeat py-10 bg-blend-screen"
+        style={{ backgroundImage: `url('${BUTTON_BG.src}')` }}
+      >
+        <div className="mb-6 text-2xl font-bold">Let’s get paid in Crypto!</div>
+        <Button
+          color="white"
+          size="large"
+          font="bold"
+          onClick={() => setIsDialogOpen(true)}
+        >
+          Join Waitlist
+        </Button>
+      </div>
+      <Dialog
+        backdropDismiss
+        isOpen={isDialogOpen}
+        setIsOpen={setIsDialogOpen}
+        onClose={() => {
+          setWaitListUrl("");
+          cancel();
+        }}
+      >
+        <Dialog.Title>
+          <span>Enter your email below to join the waitlist</span>
+        </Dialog.Title>
+        <Dialog.Body>
+          <div>
+            <Input type="text" onChange={setWaitListUrl} value={waitListUrl} />
+            <div className="mt-4">
+              <Button
+                isLoading={loading}
+                size="full"
+                color="primary"
+                onClick={signUpToWaitList}
+              >
+                Sign up
+              </Button>
+            </div>
+          </div>
+        </Dialog.Body>
+      </Dialog>
+    </>
+  );
+};
+
+export default Home;

@@ -1,0 +1,26 @@
+.input-container {
+  input {
+    background: #41435c;
+    @apply block w-full rounded-lg py-3 pl-6 pr-12 outline-none text-white sm:text-sm ring-2 ring-transparent focus:ring-primary;
+  }
+  label {
+    @apply block text-sm font-medium text-gray-700;
+  }
+  .input-wrapper {
+    @apply relative mt-1 rounded-md shadow-sm;
+  }
+  .input-end-icon {
+    @apply absolute inset-y-0 right-0 flex items-center pr-4;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+    font-size: 18px;
+  }
+}
