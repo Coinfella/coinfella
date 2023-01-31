@@ -83,7 +83,7 @@ const Home = () => {
           numberOfPieces={300}
         />
       )}
-      <div className="mx-auto mt-20 flex max-w-2xl flex-col items-center">
+      <div className="mx-auto mt-20 flex max-w-2xl flex-col items-center px-10">
         <div>
           <Image src={COIN_FACE} />
         </div>
@@ -113,11 +113,11 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto mt-60  grid max-w-6xl grid-cols-2">
+      <div className="mx-auto mt-60  grid max-w-6xl grid-cols-1 px-10 sm:grid-cols-2">
         <div className="max-w-lg">
           <Image src={DASHBOARD_SC} />
         </div>
-        <div className="ml-auto max-w-sm">
+        <div className="ml-auto mt-10 max-w-sm sm:mt-0">
           <h3 className="mt-4 text-3xl font-bold">
             A simple <span className="text-primary">dashboard</span> for
             creating, analyzing invoices and requests.
@@ -129,7 +129,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto mt-60  grid max-w-6xl grid-cols-2">
+      <div className="mx-auto mt-60 grid max-w-6xl grid-cols-1 px-10 sm:grid-cols-2">
         <div className="mr-auto max-w-sm">
           <h3 className="mt-4 text-3xl font-bold">
             We <span className="text-primary">don’t hold</span> any of your
@@ -141,15 +141,15 @@ const Home = () => {
             any of your funds in our accounts at any given point in the process!
           </div>
         </div>
-        <div className="max-w-lg">
+        <div className="mt-10 max-w-lg sm:mt-0">
           <Image src={PEOPLE_MAIN} />
         </div>
       </div>
-      <div className="mx-auto mt-60  grid max-w-6xl grid-cols-2">
+      <div className="mx-auto mt-60  grid max-w-6xl grid-cols-1 px-10 sm:grid-cols-2">
         <div className="max-w-lg">
           <Image src={PEOPLE} />
         </div>
-        <div className="ml-auto max-w-sm">
+        <div className="ml-auto mt-10 max-w-sm sm:mt-0">
           <h3 className="mt-4 text-3xl font-bold">
             Share a unique link or and email with an{" "}
             <span className="text-primary">automated invoice</span> to your
@@ -161,27 +161,9 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div
-        className="mx-auto mt-40 grid  max-w-6xl grid-cols-2 pt-20"
-        id="pricing"
-      >
-        <div className="mr-auto max-w-sm">
-          <h3 className="mt-4 text-3xl font-bold">
-            Only <span className="text-primary">1% fee </span>for all
-            transactions!
-          </h3>
-          <div className="mt-2 text-xl text-gray-400">
-            There are no hidden fees or over complicated pricing models! We take
-            only 1% off every transaction! The cheapest by far!
-          </div>
-        </div>
-        <div className="max-w-lg">
-          <Image src={COIN_JUMP} />
-        </div>
-      </div>
-      <div className="mx-auto mt-40  max-w-6xl" id="features">
+      <div className="mx-auto mt-20 max-w-6xl  px-10 pt-20" id="features">
         <div className="text-2xl font-bold">Bunch of features + more</div>
-        <div className="grid grid-cols-3 gap-10 pt-10">
+        <div className="grid grid-cols-1 gap-10 pt-10 sm:grid-cols-3">
           <Feature
             title="Analytics"
             description="Track your payments, and more with our advanced analytics dashboard."
@@ -214,19 +196,23 @@ const Home = () => {
           />
         </div>
       </div>
-      <div
-        className="mx-auto my-24 flex max-w-2xl flex-col items-center rounded-lg bg-primary bg-cover bg-no-repeat py-10 bg-blend-screen"
-        style={{ backgroundImage: `url('${BUTTON_BG.src}')` }}
-      >
-        <div className="mb-6 text-2xl font-bold">Let’s get paid in Crypto!</div>
-        <Button
-          color="white"
-          size="large"
-          font="bold"
-          onClick={() => setIsDialogOpen(true)}
+      <div className="mx-10 flex  justify-center ">
+        <div
+          className="my-24 flex w-full max-w-2xl flex-col items-center rounded-lg bg-primary bg-cover bg-no-repeat py-10 bg-blend-screen"
+          style={{ backgroundImage: `url('${BUTTON_BG.src}')` }}
         >
-          Join Waitlist
-        </Button>
+          <div className="mb-6 text-2xl font-bold">
+            Let’s get paid in Crypto!
+          </div>
+          <Button
+            color="white"
+            size="large"
+            font="bold"
+            onClick={() => setIsDialogOpen(true)}
+          >
+            Join Waitlist
+          </Button>
+        </div>
       </div>
       <Dialog
         backdropDismiss

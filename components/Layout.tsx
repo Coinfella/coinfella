@@ -10,6 +10,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { IconChevronDown } from "@tabler/icons";
 import { FCC } from "../utils/types";
 import Footer from "./Footer";
+import { Navbar } from "./Navbar";
 
 const HEADER_HEIGHT = 60;
 
@@ -133,20 +134,7 @@ const Layout: FCC = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header>
-        <div className="relative mx-auto flex max-w-6xl items-center">
-          <div className="relative left-0 h-28 w-full max-w-[200px]">
-            <Image objectFit="contain" layout="fill" src="/logo.png" />
-          </div>
-          <div className="ml-28 flex justify-between">
-            <div className="flex gap-10 text-xl font-medium">
-              <Link href="#features">Features</Link>
-              <Link href="#pricing">Pricing</Link>
-              <Link href="/faq">FAQ</Link>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Navbar />
       <div>{children}</div>
       <Footer />
     </div>

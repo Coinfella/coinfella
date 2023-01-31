@@ -6,6 +6,7 @@ export { default as PAYLINK_ICON } from "assets/icons/paylink.svg";
 export { default as REQUEST_PAYMENT_ICON } from "assets/icons/request-payment.svg";
 export { default as TWITTER_ICON } from "assets/icons/twitter.svg";
 export { default as DISCORD_ICON } from "assets/icons/discord.svg";
+export { default as MENU_ICON } from "assets/icons/menu.svg";
 
 export { default as COIN_FACE } from "assets/images/coin-face.png";
 export { default as COIN_JUMP } from "assets/images/coin-jump.png";
