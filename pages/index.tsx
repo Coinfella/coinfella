@@ -68,7 +68,7 @@ const Home = () => {
         setSignUpSuccess(false);
       }, 3000);
     }
-    if (error) {
+    if (error || !refetchData?.success) {
       showToast("Couldn't sign you up!, Try again later", { type: "error" });
     }
   };
