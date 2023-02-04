@@ -54,12 +54,12 @@ const FAQ = () => {
           <Questions
             icon={DISABLE_ICON}
             question='How does it work?'
-            answer='By using a service like Onramper, we take the fiat payment, do the conversion and send the equivalent amount in crypto. We won’t hold any of your funds in our accounts at any given point in the process!'
+            answer='By using third party on ramp, we take the fiat payment, do the conversion and send the equivalent amount in crypto. We won’t hold any of your funds in our accounts at any given point in the process!'
           />
           <Questions
             icon={TRUCK_ICON}
             question='Is there a fee?'
-            answer='We collect a small fee of 1% from every transaction, from the payer and the payee.'
+            answer='We’re still in the process of finalizing our business models. However, Coinfella will be the cheapest option out there, when it’s ready. '
           />
           <Questions
             icon={DOLLAR_ICON}
