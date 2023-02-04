@@ -7,6 +7,12 @@ export { default as REQUEST_PAYMENT_ICON } from "assets/icons/request-payment.sv
 export { default as TWITTER_ICON } from "assets/icons/twitter.svg";
 export { default as DISCORD_ICON } from "assets/icons/discord.svg";
 export { default as MENU_ICON } from "assets/icons/menu.svg";
+export { default as EMAIL_ICON } from "assets/icons/email.svg";
+export { default as CREDIT_CARD_ICON } from "assets/icons/credit-card.svg";
+export { default as DISABLE_ICON } from "assets/icons/disable.svg";
+export { default as TRUCK_ICON } from "assets/icons/truck.svg";
+export { default as DOLLAR_ICON } from "assets/icons/dollar.svg";
+export { default as TAG_ICON } from "assets/icons/tag.svg";
 
 export { default as COIN_FACE } from "assets/images/coin-face.png";
 export { default as COIN_JUMP } from "assets/images/coin-jump.png";
