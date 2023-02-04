@@ -8,30 +8,36 @@ const Footer = () => {
     <footer className="mx-auto max-w-6xl px-10 pb-20">
       <div className="grid grid-cols-1 sm:grid-cols-2">
         <div className="max-w-md">
-          <div className="relative left-0 h-28 w-full max-w-[200px]">
-            <Image objectFit="contain" layout="fill" src="/logo.png" />
-          </div>
+          <Link href="/">
+            <div className="relative left-0 h-28 w-full max-w-[200px] cursor-pointer">
+              <Image objectFit="contain" layout="fill" src="/logo.png" />
+            </div>
+          </Link>
           <div className="text-xl text-gray-400">
             The easiest way to get paid crypto. Onboarding the next wave of
             people in to web3.
           </div>
           <div className="mt-10 flex gap-5">
-            <div className="relative">
-              <Image
-                height={30}
-                width={30}
-                objectFit="contain"
-                src={TWITTER_ICON}
-              />
-            </div>
-            <div className="relative">
-              <Image
-                height={30}
-                width={30}
-                objectFit="contain"
-                src={DISCORD_ICON}
-              />
-            </div>
+            <a target="_blank" href="https://twitter.com/coinfellapay" rel="noreferrer">
+              <div className="relative">
+                <Image
+                  height={30}
+                  width={30}
+                  objectFit="contain"
+                  src={TWITTER_ICON}
+                />
+              </div>
+            </a>
+            <a target="_blank" href="https://discord.gg/dDgFbq3x9r" rel="noreferrer">
+              <div className="relative cursor-pointer">
+                <Image
+                  height={30}
+                  width={30}
+                  objectFit="contain"
+                  src={DISCORD_ICON}
+                />
+              </div>
+            </a>
           </div>
         </div>
         <div className="grid  grid-cols-1 sm:grid-cols-3">
@@ -54,8 +60,12 @@ const Footer = () => {
           <div className="flex max-w-md flex-col gap-10 pt-10 sm:pl-14">
             <div className="text-xl font-bold">Socials</div>
             <div className="flex flex-col gap-3 text-gray-400">
-              <Link href="/#">Discord</Link>
-              <Link href="/#">Twitter</Link>
+              <a target="_blank" href="https://discord.gg/dDgFbq3x9r" rel="noreferrer">
+                Discord
+              </a>
+              <a target="_blank" href="https://twitter.com/coinfellapay" rel="noreferrer">
+                Twitter
+              </a>
             </div>
           </div>
         </div>

@@ -87,7 +87,7 @@ const Home = () => {
         <div>
           <Image src={COIN_FACE} />
         </div>
-        <h1 className="mt-4 text-4xl font-bold">
+        <h1 className="mt-4 text-4xl font-bold text-center">
           The easiest way to get paid in crypto
         </h1>
         <h2 className="mt-2 text-center text-xl text-gray-400">

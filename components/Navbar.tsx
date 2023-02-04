@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { Disclosure } from "@headlessui/react";
 import { MENU_ICON } from "../utils/assets";
 
 export const Navbar = () => {
@@ -29,19 +29,21 @@ export const Navbar = () => {
                 </div>
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                   <div className="flex flex-shrink-0 items-center">
-                    <div className="relative h-20 w-20">
-                      <Image
-                        objectFit="contain"
-                        layout="fill"
-                        className="h-8 w-auto"
-                        src="/logo.png"
-                      />
-                    </div>
+                    <Link href="/">
+                      <div className="relative h-20 w-20 cursor-pointer">
+                        <Image
+                          objectFit="contain"
+                          layout="fill"
+                          className="h-8 w-auto"
+                          src="/logo.png"
+                        />
+                      </div>
+                    </Link>
                   </div>
                   <div className="hidden items-center sm:ml-6 sm:flex">
                     <div className="flex space-x-4">
                       {navigation.map((item) => (
-                        <a
+                        <Link
                           key={item.name}
                           href={item.href}
                           className={classNames(
@@ -53,7 +55,7 @@ export const Navbar = () => {
                           aria-current={item.current ? "page" : undefined}
                         >
                           {item.name}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
