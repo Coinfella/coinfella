@@ -22,10 +22,10 @@ const Questions = ({
     <div className='rounded-xl bg-[#181818] px-8 py-6'>
       <div className='flex h-12 max-w-[3rem] flex-1 place-content-center rounded-full bg-primary'>
         <Image
+          className='object-contain'
           height={25}
           width={25}
           src={icon}
-          objectFit='contain'
           alt='icon'
         />
       </div>
