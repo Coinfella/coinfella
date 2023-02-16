@@ -7,7 +7,7 @@ import {
   EMAIL_ICON,
   TAG_ICON,
   TRUCK_ICON,
-} from "../utils/assets";
+} from "../../../utils/assets";
 
 const Questions = ({
   icon,

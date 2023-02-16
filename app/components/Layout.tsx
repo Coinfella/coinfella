@@ -8,7 +8,7 @@ import { useSession, signOut } from "next-auth/react";
 import { createStyles, Menu, Center } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconChevronDown } from "@tabler/icons";
-import { FCC } from "../utils/types";
+import { FCC } from "../../utils/types";
 import Footer from "./Footer";
 import { Navbar } from "./Navbar";
 
@@ -97,13 +97,21 @@ const Layout: FCC = ({ children }) => {
 
     if (menuItems) {
       return (
-        <Menu key={link.label} trigger="hover" exitTransitionDuration={0}>
+        <Menu
+          key={link.label}
+          trigger='hover'
+          exitTransitionDuration={0}>
           <Menu.Target>
-            <Link href={link.link} onClick={(event) => event.preventDefault()}>
+            <Link
+              href={link.link}
+              onClick={(event) => event.preventDefault()}>
               <a className={classes.link}>
                 <Center>
                   <span className={classes.linkLabel}>{link.label}</span>
-                  <IconChevronDown size={12} stroke={1.5} />
+                  <IconChevronDown
+                    size={12}
+                    stroke={1.5}
+                  />
                 </Center>
               </a>
             </Link>
@@ -117,8 +125,7 @@ const Layout: FCC = ({ children }) => {
       <Link
         key={link.label}
         href={link.link}
-        onClick={(event) => event.preventDefault()}
-      >
+        onClick={(event) => event.preventDefault()}>
         <a className={classes.link}>{link.label}</a>
       </Link>
     );
@@ -127,11 +134,17 @@ const Layout: FCC = ({ children }) => {
   const handleSignOut = () => signOut({ redirect: false, callbackUrl: "/" });
 
   return (
-    <div className="h-screen">
+    <div className='h-screen'>
       <Head>
         <title>CoinFella</title>
-        <meta name="description" content="Pay in fiat, receive crypto." />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name='description'
+          content='Pay in fiat, receive crypto.'
+        />
+        <link
+          rel='icon'
+          href='/favicon.ico'
+        />
       </Head>
 
       <Navbar />

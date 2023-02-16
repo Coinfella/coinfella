@@ -1,5 +1,5 @@
 import { cva, VariantProps } from "cva";
-import { FCC } from "../utils/types";
+import { FCC } from "../../utils/types";
 import useRipple from "use-ripple-hook";
 import { Spinner } from "./Spinner";
 
@@ -46,12 +46,11 @@ export const Button: FCC<ButtonProps> = ({
       ref={ripple}
       onMouseDown={event}
       onClick={props?.onClick}
-      className={buttonStyles({ size, color, font })}
-    >
+      className={buttonStyles({ size, color, font })}>
       {children}
       {isLoading && (
-        <div className="absolute top-0 bottom-0 right-3 flex items-center">
-          <Spinner fill="white" />
+        <div className='absolute top-0 bottom-0 right-3 flex items-center'>
+          <Spinner fill='white' />
         </div>
       )}
     </button>

@@ -1,3 +1,5 @@
+"use client";
+
 import axios from "axios";
 import React, { useState } from "react";
 import Confetti from "react-confetti";
@@ -21,9 +23,9 @@ import {
   PEOPLE,
   PEOPLE_MAIN,
   REQUEST_PAYMENT_ICON,
-} from "../utils/assets";
-import { showToast } from "../utils/toast";
-import { useAxios } from "../utils/useAxios";
+} from "../../utils/assets";
+import { showToast } from "../../utils/toast";
+import { useAxios } from "../../utils/useAxios";
 import Image from "next/image";
 const Feature = ({
   image,

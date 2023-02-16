@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Disclosure } from "@headlessui/react";
-import { MENU_ICON } from "../utils/assets";
+import { MENU_ICON } from "../../utils/assets";
 
 export const Navbar = () => {
   const navigation = [
