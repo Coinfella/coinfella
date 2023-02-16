@@ -5,18 +5,17 @@ import React from "react";
 import { SessionProvider } from "next-auth/react";
 import { ReactNode } from "react";
 import { ToastContainer } from "react-toastify";
-import { getServerSession } from "next-auth";
 
 interface IProps {
   children: ReactNode;
 }
 export default function RootLayout({ children }: IProps) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body>
         <SessionProvider>
           {children}
-          <ToastContainer position="bottom-right" />
+          <ToastContainer position='bottom-right' />
         </SessionProvider>
       </body>
     </html>
