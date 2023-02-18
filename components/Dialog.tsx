@@ -1,6 +1,6 @@
 import { Dialog as HeadlessDialog, Transition } from "@headlessui/react";
 import React, { Fragment, PropsWithChildren, useState } from "react";
-import { FCC } from "../../utils/types";
+import { FCC } from "../lib/types";
 
 interface DialogProps {
   isOpen: boolean;

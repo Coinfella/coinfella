@@ -3,10 +3,10 @@
 import axios from "axios";
 import React, { useState } from "react";
 import Confetti from "react-confetti";
-import { Button } from "../components/Button";
-import { Dialog } from "../components/Dialog";
-import { Input } from "../components/Inputs";
-import { Spinner } from "../components/Spinner";
+import { Button } from "@/components/Button";
+import { Dialog } from "@/components/Dialog";
+import { Input } from "@/components/Inputs";
+import { Spinner } from "@/components/Spinner";
 
 import {
   ANALYTICS_ICON,
@@ -23,9 +23,9 @@ import {
   PEOPLE,
   PEOPLE_MAIN,
   REQUEST_PAYMENT_ICON,
-} from "../../utils/assets";
-import { showToast } from "../../utils/toast";
-import { useAxios } from "../../utils/useAxios";
+} from "@/lib/assets";
+import { showToast } from "@/lib/toast";
+import { useAxios } from "@/lib/useAxios";
 import Image from "next/image";
 const Feature = ({
   image,

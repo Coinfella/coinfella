@@ -1,6 +1,6 @@
 "use client";
 
-import "../../styles/globals.scss";
+import "@/styles/globals.scss";
 import React from "react";
 import { SessionProvider } from "next-auth/react";
 import { ReactNode } from "react";

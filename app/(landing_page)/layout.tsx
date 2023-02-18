@@ -1,12 +1,12 @@
 "use client";
 
-import "../../styles/globals.scss";
+import "@/styles/globals.scss";
 import React from "react";
 import { ReactNode } from "react";
 import { ToastContainer } from "react-toastify";
 import Head from "next/head";
-import { Navbar } from "../components/Navbar";
-import Footer from "../components/Footer";
+import { Navbar } from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 interface IProps {
   children: ReactNode;

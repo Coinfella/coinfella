@@ -21,9 +21,11 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      // "@lib": ["lib/*"],
+      "@/*": ["./*"],
+      "@/api/*": ["./pages/api/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
