@@ -25,7 +25,7 @@ export const Text: FCC<TextProps> = ({
       break;
     case 'h3':
       _className =
-        'scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl';
+        'mt-8 scroll-m-20 text-2xl font-semibold tracking-tight';
       break;
     case 'h4':
       _className = 'mt-8 scroll-m-20 text-xl font-semibold tracking-tight';
