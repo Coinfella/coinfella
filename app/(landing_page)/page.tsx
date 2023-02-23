@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import Confetti from "react-confetti";
 import { Button } from "@/components/Button";
 import { Dialog } from "@/components/Dialog";
-import { Input } from "@/components/Inputs";
+import Input from "@/components/Inputs/Input";
 import { Spinner } from "@/components/Spinner";
 
 import {

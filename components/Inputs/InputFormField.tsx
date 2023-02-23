@@ -1,4 +1,6 @@
-import { Input, InputProps } from './Input';
+'use client';
+
+import Input, { InputProps } from './Input';
 import { RegisterOptions, useFormContext } from 'react-hook-form';
 import { memo } from 'react';
 import { PropsWithClass } from '@/lib/types';
@@ -7,13 +9,11 @@ export interface InputFormFieldProps {
   name: string;
   options?: RegisterOptions;
 }
-export const InputFormField: React.FC<
+const InputFormField: React.FC<
   PropsWithClass<InputProps & InputFormFieldProps>
 > = memo(({ name, options = {}, ...props }) => {
   const {
     register,
-    getValues,
-    setValue,
     formState: { errors },
   } = useFormContext();
 
@@ -26,3 +26,4 @@ export const InputFormField: React.FC<
     ></Input>
   );
 });
+export default InputFormField;

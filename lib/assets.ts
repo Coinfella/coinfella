@@ -23,3 +23,6 @@ export { default as PEOPLE_MAIN } from "assets/images/people-main.png";
 export { default as PEOPLE } from "assets/images/people.png";
 export { default as BUTTON_BG } from "assets/images/btn-bg.png";
 export { default as DASHBOARD_SC } from "assets/images/dashboard-sc.png";
+export { default as SENT_ROCKET } from "assets/images/sent.png";
+export { default as ATTACH_DOC } from "assets/images/attachDoc.png";
+export { default as THUMBSUP } from "assets/images/thumbsup.png";

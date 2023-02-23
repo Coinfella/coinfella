@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../../styles/Pay.module.css";
+import styles from "@/styles/Pay.module.css";
 import { TextInput, NumberInput, Button, Input } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { IconAlertTriangle } from "@tabler/icons";
@@ -18,7 +18,7 @@ import {
   Card,
 } from "@mantine/core";
 import OnramperWidget from "@onramper/widget";
-import invoice from "../api/auth/lib/model/invoice";
+import invoice from "@/api/auth/lib/model/invoice";
 import { lazy, useCallback, useEffect, useMemo, useState } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -26,7 +26,7 @@ import dynamic from "next/dynamic";
 import { setNestedObjectValues } from "formik";
 import React from "react";
 const DynamicOnramper = dynamic(
-  () => import("../../app/components/DynamicOnramper"),
+  () => import("@/components/DynamicOnramper"),
   { ssr: false }
 );
 
@@ -40,7 +40,7 @@ const Pay: NextPage = () => {
   const [preferredCrypto, setPreferredCrypto] = useState("");
   const [category, setCategory] = useState("");
   const [invoice, setInvoice] = useState();
-
+  let init = false;
   const router = useRouter();
   const { id } = router.query;
 
