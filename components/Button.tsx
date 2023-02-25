@@ -4,6 +4,7 @@ import { cva, VariantProps } from 'cva';
 import { FCC } from '../lib/types';
 import useRipple from 'use-ripple-hook';
 import { Spinner } from './Spinner';
+import { cn } from '@/lib/utils';
 
 const buttonStyles = cva(
   'bg-btn-fill text-btn-text p-4 rounded-md font-medium relative',
@@ -31,7 +32,6 @@ export type ButtonProps = VariantProps<typeof buttonStyles> & {
   isLoading?: boolean;
   onClick?: () => void;
   type?: 'button' | 'submit';
-  [key: string]: any;
 };
 
 export const Button: FCC<ButtonProps> = ({
@@ -41,7 +41,8 @@ export const Button: FCC<ButtonProps> = ({
   font,
   isLoading,
   type = 'button',
-  ...props
+  className,
+  onClick,
 }) => {
   const [ripple, event] = useRipple();
 
@@ -50,8 +51,8 @@ export const Button: FCC<ButtonProps> = ({
       ref={ripple}
       onMouseDown={event}
       type={type}
-      onClick={props?.onClick}
-      className={buttonStyles({ size, color, font })}
+      onClick={onClick}
+      className={cn(buttonStyles({ size, color, font }), className)}
     >
       {children}
       {isLoading && (
