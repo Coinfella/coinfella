@@ -7,7 +7,7 @@ import { Spinner } from './Spinner';
 import { cn } from '@/lib/utils';
 
 const buttonStyles = cva(
-  'bg-btn-fill text-btn-text p-4 rounded-md font-medium relative',
+  'bg-btn-fill text-btn-text p-4 rounded-lg font-medium relative',
   {
     variants: {
       size: {
@@ -15,10 +15,13 @@ const buttonStyles = cva(
         full: 'w-full',
         medium: '',
         large: 'min-w-[300px]',
+        xLarge: 'min-w-[350px]',
       },
       color: {
         primary: 'bg-primary',
         white: 'bg-white text-black',
+        google: 'bg-white text-[#7A8494]',
+        facebook: 'bg-[#1877F2] text-white',
       },
       font: {
         bold: 'font-bold',

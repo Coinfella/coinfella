@@ -36,19 +36,19 @@ const Input = memo(
       },
       ref
     ) => {
-      if (type === 'text') {
+      if (type === 'text' || type === 'password') {
         return (
           <div>
             {label && <label htmlFor={labelId ?? label}>{label}</label>}
             <input
               ref={ref}
-              type="text"
+              type={type === 'text' ? 'text' : 'password'}
               name={label}
               value={value}
               id={labelId ?? label}
               disabled={disabled}
               className={cn(
-                'flex h-10 w-full rounded-md border border-slate-300 bg-transparent bg-gray-700 py-2 px-3 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900',
+                'mt-1 flex h-10 w-full rounded-md border border-slate-300 bg-transparent bg-gray-700 py-2 px-3 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900',
                 className
               )}
               placeholder={placeholder}
