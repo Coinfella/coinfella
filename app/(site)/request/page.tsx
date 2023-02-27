@@ -10,18 +10,30 @@ import { Button } from '@/components/Button';
 import { useSession } from 'next-auth/react';
 import { SENT_ROCKET, THUMBSUP } from '@/lib/assets';
 import Image from 'next/image';
+import { SelectFormField } from '@/components/Inputs/SelectFormField';
 
 const requestForm = z.object({
-  payerName: z.string().min(1,"Please enter value"),
-  payerEmail: z.string().min(1,"Please enter value"),
-  requestAs: z.string().min(1,"Please enter value"),
-  fiatCurrency: z.string().min(1,"Please enter value"),
-  cryptoChain: z.string().min(1,"Please enter value"),
-  walletAddress: z.string().min(1,"Please enter value"),
-  dueDate: z.string().min(1,"Please enter value"),
-  description: z.string().min(1,"Please enter value"),
-  amount: z.coerce.number().min(1,"Please enter value"),
+  payerName: z.string().min(1, 'Please enter value'),
+  payerEmail: z.string().min(1, 'Please enter value'),
+  requestAs: z.string().min(1, 'Please enter value'),
+  fiatCurrency: z.string().min(1, 'Please enter value'),
+  cryptoChain: z.string().min(1, 'Please enter value'),
+  walletAddress: z.string().min(1, 'Please enter value'),
+  dueDate: z.string().min(1, 'Please enter value'),
+  description: z.string().min(1, 'Please enter value'),
+  amount: z.coerce.number().min(1, 'Please enter value'),
 });
+
+const currencies = [
+  { value: 'USD', name: 'USD' },
+  { value: 'EUR', name: 'EUR' },
+];
+
+const chains = [
+  { value: 'USDT', name: 'Solana' },
+  { value: 'ETH', name: 'Etherium' },
+  { value: 'USDT', name: 'USDT' },
+];
 
 const Request = () => {
   const { data: session } = useSession();
@@ -61,8 +73,16 @@ const Request = () => {
                 <InputFormField name="requestAs" label="Request As" />
               </div>
               <div className="mt-5 flex justify-between gap-5">
-                <InputFormField name="fiatCurrency" label="Request In" />
-                <InputFormField name="cryptoChain" label="Get Paid In" />
+                <SelectFormField
+                  name="fiatCurrency"
+                  label="Request In"
+                  selectOptions={currencies}
+                />
+                <SelectFormField
+                  name="cryptoChain"
+                  label="Get Paid In"
+                  selectOptions={chains}
+                />
                 <InputFormField name="walletAddress" label="Your Wallet" />
               </div>
               <div className="mt-5 flex justify-between gap-5">

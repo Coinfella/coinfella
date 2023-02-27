@@ -48,7 +48,7 @@ const Input = memo(
               id={labelId ?? label}
               disabled={disabled}
               className={cn(
-                'mt-1 flex h-10 w-full rounded-md border border-slate-300 bg-transparent bg-gray-700 py-2 px-3 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900',
+                'mt-1 flex h-10 w-full min-w-[180px] rounded-md border border-slate-300 bg-transparent bg-gray-700 py-2 px-3 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900',
                 className
               )}
               placeholder={placeholder}
