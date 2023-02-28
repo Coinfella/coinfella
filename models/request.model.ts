@@ -1,6 +1,7 @@
 import mongoose, { Model, model, Schema } from 'mongoose';
 
 interface IRequest {
+  user: Schema.Types.ObjectId;
   payerName: string;
   payerEmail: string;
   requestAs: string;
@@ -13,6 +14,10 @@ interface IRequest {
 }
 
 const requestSchema = new Schema<IRequest>({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
   payerName: {
     type: String,
     required: true,

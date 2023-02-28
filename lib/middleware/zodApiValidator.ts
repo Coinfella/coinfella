@@ -13,7 +13,7 @@ export function ApiExceptionHandler(
 ) {
   const message =
     error instanceof HttpException
-      ? error.name
+      ? error.message
       : 'An unknown error occurred.';
   const status = error instanceof HttpException ? error.statusCode : 500;
   const errorString = error instanceof HttpException ? error.errors?.toString() : '{}';

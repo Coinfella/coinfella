@@ -11,6 +11,7 @@ import { useSession } from 'next-auth/react';
 import { SENT_ROCKET, THUMBSUP } from '@/lib/assets';
 import Image from 'next/image';
 import { SelectFormField } from '@/components/Inputs/SelectFormField';
+import { DatePickerFormField } from '@/components/Inputs/DatePickerFormField';
 
 const requestForm = z.object({
   payerName: z.string().min(1, 'Please enter value'),
@@ -19,7 +20,7 @@ const requestForm = z.object({
   fiatCurrency: z.string().min(1, 'Please enter value'),
   cryptoChain: z.string().min(1, 'Please enter value'),
   walletAddress: z.string().min(1, 'Please enter value'),
-  dueDate: z.string().min(1, 'Please enter value'),
+  dueDate: z.date(),
   description: z.string().min(1, 'Please enter value'),
   amount: z.coerce.number().min(1, 'Please enter value'),
 });
@@ -30,7 +31,7 @@ const currencies = [
 ];
 
 const chains = [
-  { value: 'USDT', name: 'Solana' },
+  { value: 'SOL', name: 'Solana' },
   { value: 'ETH', name: 'Etherium' },
   { value: 'USDT', name: 'USDT' },
 ];
@@ -86,14 +87,14 @@ const Request = () => {
                 <InputFormField name="walletAddress" label="Your Wallet" />
               </div>
               <div className="mt-5 flex justify-between gap-5">
-                <InputFormField name="dueDate" label="Due Date" />
+                <DatePickerFormField name="dueDate" label="Due Date" />
                 <InputFormField name="description" label="Description" />
                 <InputFormField name="amount" label="Amount" />
               </div>
               <div className="mt-10 flex justify-between">
-                <Button color="primary" size="medium" font="bold">
+                {/* <Button color="primary" size="medium" font="bold">
                   Attach Documents
-                </Button>
+                </Button> */}
                 <Button color="primary" size="medium" font="bold" type="submit">
                   Request
                 </Button>

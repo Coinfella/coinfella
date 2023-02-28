@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import dbConnect from "./auth/lib/connectdb";
+import dbConnect from "../../lib/connectdb";
 import auth from "./auth/lib/model/auths";
 import bcrypt from "bcrypt";
 

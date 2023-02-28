@@ -15,7 +15,7 @@ import {
   UseMiddleware,
 } from 'next-api-decorators';
 import { z } from 'zod';
-import { ConnectDB } from '../auth/lib/connectdb';
+import { ConnectDB } from '@/lib/connectdb';
 
 const requestSchema = z.object({
   payerName: z.string(),

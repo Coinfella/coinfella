@@ -13,3 +13,8 @@ html {
 body {
   @apply bg-black text-white;
 }
+
+.react-datepicker-wrapper{
+  width: auto !important;
+  display: block !important;
+}

@@ -1,26 +1,29 @@
-'use client';
-//TODO: fix layout to server component
+import { authOptions } from '@/lib/auth';
 import '@/styles/globals.scss';
+import { getServerSession } from 'next-auth';
 import React from 'react';
-import { SessionProvider } from 'next-auth/react';
 import { ReactNode } from 'react';
-import { ToastContainer } from 'react-toastify';
-import Head from 'next/head';
-
+import AuthContext from './AuthContext';
+import AuthGuard from './AuthGuard';
+import { ClientToastContainer } from './ClientToastContainer';
 interface IProps {
   children: ReactNode;
 }
-export default function RootLayout({ children }: IProps) {
+export default async function RootLayout({ children }: IProps) {
+  const session = await getServerSession(authOptions);
+  console.log(session);
+
   return (
     <html lang="en">
-      <Head>
+      {/* <Head>
         <title>Coin Fella</title>
-      </Head>
+      </Head> */}
       <body>
-        <SessionProvider>
-          {children}
-          <ToastContainer position="bottom-right" />
-        </SessionProvider>
+        <AuthContext>
+          {/* {children} */}
+          {/* <AuthGuard/> */}
+          <ClientToastContainer />
+        </AuthContext>
       </body>
     </html>
   );
