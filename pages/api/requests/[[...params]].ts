@@ -1,7 +1,10 @@
 import NextAuthGuard from '@/lib/middleware/authGuard';
-import { ApiExceptionHandler, BodyValidation } from '@/lib/middleware/zodApiValidator';
+import {
+  ApiExceptionHandler,
+  BodyValidation,
+} from '@/lib/middleware/zodApiValidator';
 import RequestModel from '@/models/request.model';
-import { isValidObjectId } from 'mongoose';
+import mongoose, { isValidObjectId } from 'mongoose';
 import {
   BadRequestException,
   Catch,
@@ -11,11 +14,14 @@ import {
   NotFoundException,
   Param,
   Post,
+  Req,
   Response,
   UseMiddleware,
 } from 'next-api-decorators';
 import { z } from 'zod';
 import { ConnectDB } from '@/lib/connectdb';
+import { type NextApiRequest } from 'next';
+import UserModel from '@/models/user.model';
 
 const requestSchema = z.object({
   payerName: z.string(),
@@ -28,19 +34,21 @@ const requestSchema = z.object({
   description: z.string(),
   amount: z.coerce.number(),
 });
+
 var schema = requestSchema._type;
 
 @Catch(ApiExceptionHandler)
-// @NextAuthGuard()
 @UseMiddleware(ConnectDB)
 class RequestHandler {
+  @NextAuthGuard()
   @Post()
   @HttpCode(201)
   public async createRequest(
-    @BodyValidation(requestSchema) body: typeof schema
+    @BodyValidation(requestSchema) body: typeof schema,
+    @Req() req: NextApiRequest
   ) {
-    console.log('connected function');
     const newRequest = new RequestModel(body);
+    newRequest.user = new mongoose.Types.ObjectId(req!.user!.id);
     const entity = await newRequest.save();
     //TODO:send email
     return { success: true, entity };
@@ -55,7 +63,16 @@ class RequestHandler {
     if (!entity) {
       throw new NotFoundException('Entity not found');
     }
-    return { success: true, entity };
+
+    const user = await UserModel.findById(entity.user);
+
+    return {
+      success: true,
+      entity: {
+        ...entity.toJSON(),
+        requester: { user: user?.name ?? '', email: user?.email ?? '' },
+      },
+    };
   }
 }
 

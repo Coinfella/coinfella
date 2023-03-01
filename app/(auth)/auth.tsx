@@ -15,21 +15,23 @@ import Input from '@/components/Inputs/Input';
 import Link from 'next/link';
 import axios from 'axios';
 import { signIn, useSession } from 'next-auth/react';
-import  { useRouter }  from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 interface AuthProps {
   isLogin: boolean;
+  searchParams: any;
 }
-const Auth: React.FC<AuthProps> = ({ isLogin }) => {
+const Auth: React.FC<AuthProps> = ({ isLogin, searchParams }) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const session = useSession();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const router = useRouter()
-  
+  const router = useRouter();
+  const requestExists = searchParams.request;
+
   const registerUser = async () => {
-    const res = await axios
+    axios
       .post(
         '/api/auth/register',
         { name, email, password },
@@ -41,29 +43,32 @@ const Auth: React.FC<AuthProps> = ({ isLogin }) => {
         }
       )
       .then(async () => {
-        await loginUser();
-        // router.push("/request");
+        // await loginUser();
+        if (requestExists) {
+          router.push(`/payment-request/${requestExists}`);
+        } else {
+          router.push('/request');
+        }
       })
       .catch((error) => {
         console.log(error);
       });
-    console.log(res);
   };
 
   const loginUser = async () => {
-    console.log(password);
     const res: any = await signIn('credentials', {
       redirect: false,
       email: email,
       password: password,
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
     });
-    if (res) {
-      console.log(res);
-      // router.push("/request");
+    console.log(res);
+    
+    if (res.status == "200") {
+      if (requestExists) {
+        router.push(`/payment-request/${requestExists}`);
+      } else {
+        router.push('/request');
+      }
     }
   };
 
@@ -215,7 +220,11 @@ const Auth: React.FC<AuthProps> = ({ isLogin }) => {
           {isLogin && (
             <div className="mt-9 flex justify-end gap-1 text-sm font-medium">
               Don’t have an account!
-              <Link href="/sign-up">
+              <Link
+                href={`/sign-up?${
+                  requestExists ? 'request=' + requestExists : ''
+                }`}
+              >
                 <span className="cursor-pointer font-bold text-primary">
                   Sign Up
                 </span>
@@ -225,7 +234,11 @@ const Auth: React.FC<AuthProps> = ({ isLogin }) => {
           {!isLogin && (
             <div className="mt-9 flex justify-end gap-1 text-sm font-medium">
               Already have an account
-              <Link href="/sign-in">
+              <Link
+                href={`/sign-in?${
+                  requestExists ? 'request=' + requestExists : ''
+                }`}
+              >
                 <span className="cursor-pointer font-bold text-primary">
                   Sign in
                 </span>

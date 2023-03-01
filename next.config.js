@@ -2,9 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  trailingSlash: true,
+  trailingSlash: false,
   experimental: {
     appDir: true,
+    typedRoutes: true,
   },
 };
 

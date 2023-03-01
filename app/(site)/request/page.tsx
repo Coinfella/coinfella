@@ -12,10 +12,11 @@ import { SENT_ROCKET, THUMBSUP } from '@/lib/assets';
 import Image from 'next/image';
 import { SelectFormField } from '@/components/Inputs/SelectFormField';
 import { DatePickerFormField } from '@/components/Inputs/DatePickerFormField';
+import axios from 'axios';
 
 const requestForm = z.object({
   payerName: z.string().min(1, 'Please enter value'),
-  payerEmail: z.string().min(1, 'Please enter value'),
+  payerEmail: z.coerce.string().email().min(1, 'Please enter value'),
   requestAs: z.string().min(1, 'Please enter value'),
   fiatCurrency: z.string().min(1, 'Please enter value'),
   cryptoChain: z.string().min(1, 'Please enter value'),
@@ -46,7 +47,8 @@ const Request = () => {
   });
 
   const createRequest = (data: any) => {
-    fetch('/api/requests', { method: 'POST', body: data })
+    axios
+      .post('/api/requests', data)
       .then((res) => {
         if (res.status != 201) {
           console.error(res);

@@ -1,7 +1,7 @@
 import Auth from '../auth';
 
-const SignUp = () => {
-  return <Auth isLogin={false} />;
+const SignUp = ({ searchParams }: any) => {
+  return <Auth isLogin={false} searchParams={searchParams} />;
 };
 
 export default SignUp;

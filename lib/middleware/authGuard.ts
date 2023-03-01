@@ -4,22 +4,31 @@ import {
   NextFunction,
   UnauthorizedException,
 } from 'next-api-decorators';
+import { DefaultSession, getServerSession } from 'next-auth';
 import { getToken } from 'next-auth/jwt';
+import { authOptions } from '../auth';
 
 declare module 'next' {
   interface NextApiRequest {
-    user?: { name: string };
+    user?: {
+      name: string;
+      email: string;
+      image: string;
+      id: string;
+    };
   }
 }
 
 const NextAuthGuard = createMiddlewareDecorator(
-  async (req: NextApiRequest, _res: NextApiResponse, next: NextFunction) => {
-    const token = await getToken({ req, secret: process.env.JWT_SECRET });
-    if (!token || !token.name) {
+  async (req: NextApiRequest, res: NextApiResponse, next: NextFunction) => {
+    const session = await getServerSession(req, res, authOptions);
+
+    if (session == null || session.user == null) {
       throw new UnauthorizedException();
     }
 
-    req.user = { name: token.name };
+    //@ts-ignore
+    req.user = session.user;
     next();
   }
 );

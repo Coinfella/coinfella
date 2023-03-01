@@ -1,7 +1,7 @@
-import mongoose, { Model, model, Schema } from 'mongoose';
+import mongoose, { Model, model, Types, Schema } from 'mongoose';
 
 interface IRequest {
-  user: Schema.Types.ObjectId;
+  user: Types.ObjectId | string;
   payerName: string;
   payerEmail: string;
   requestAs: string;

@@ -23,7 +23,7 @@ import { Field, Form, Formik } from "formik";
 import axios from "axios";
 import Router from "next/router";
 
-const SignIn: NextPage = ({ providers }: any) => {
+const SignIn: NextPage = ({ searchParams }: any) => {
   const { data: session } = useSession();
   const [authType, setAuthType] = useState("Login");
   const oppAuthType: { [key: string]: string } = {
@@ -42,7 +42,9 @@ const SignIn: NextPage = ({ providers }: any) => {
       Router.push("/invoicing");
     }
   };
-
+  const requestExists = searchParams.request;
+  console.log(requestExists);
+  
   useEffect(() => {
    if(alert){
     console.log(alert);
