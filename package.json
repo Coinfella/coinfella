@@ -23,6 +23,7 @@
     "@next-auth/mongodb-adapter": "^1.1.1",
     "@onramper/widget": "^2.2.27",
     "@radix-ui/react-avatar": "^1.0.1",
+    "@radix-ui/react-dialog": "^1.0.2",
     "@radix-ui/react-select": "^1.2.0",
     "@ramp-network/ramp-instant-sdk": "^4.0.1",
     "@sendgrid/mail": "^7.7.0",
