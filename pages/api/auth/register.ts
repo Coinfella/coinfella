@@ -96,7 +96,7 @@ import {
 import { z } from 'zod';
 import bcrypt from 'bcrypt';
 import UserModel from '@/models/user.model';
-import { ConnectDB } from '../../../lib/connectdb';
+import { ConnectDB } from '@/lib/connectdb';
 
 const credentialSchema = z.object({
   email: z.coerce.string().email(),

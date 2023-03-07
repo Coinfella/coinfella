@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { DISCORD_ICON, TWITTER_ICON } from "../lib/assets";
+import { DISCORD_ICON, TWITTER_ICON } from "@/lib/assets";
 
 const Footer = () => {
   return (

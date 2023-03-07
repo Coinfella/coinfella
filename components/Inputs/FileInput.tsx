@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { ErrorMessage } from "./ErrorMessage";
-import cameraImage from "../../..//assets/icons/camera.svg";
  
 export interface FileInputProps {
   onChange(e: React.ChangeEvent<HTMLInputElement>): void;

@@ -26,15 +26,26 @@ const requestForm = z.object({
   amount: z.coerce.number().min(1, 'Please enter value'),
 });
 
+type requestFormResponseExtras = {
+  _id: string;
+  requester: {
+    user: string;
+    email: string;
+  }
+};
+
+type request = typeof requestForm._type;
+export type RequestType = requestFormResponseExtras & request;
+  
+
 const currencies = [
   { value: 'USD', name: 'USD' },
-  { value: 'EUR', name: 'EUR' },
 ];
 
 const chains = [
-  { value: 'SOL', name: 'Solana' },
-  { value: 'ETH', name: 'Etherium' },
-  { value: 'USDT', name: 'USDT' },
+  { value: 'SOLANA_USDC', name: 'Solana USDC' },
+  { value: 'SOLANA_USDT', name: 'Solana USDT' },
+   { value: 'USDT', name: 'USDT' },
 ];
 
 const Request = () => {

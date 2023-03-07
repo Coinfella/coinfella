@@ -61,7 +61,6 @@ const Auth: React.FC<AuthProps> = ({ isLogin, searchParams }) => {
       email: email,
       password: password,
     });
-    console.log(res);
     
     if (res.status == "200") {
       if (requestExists) {

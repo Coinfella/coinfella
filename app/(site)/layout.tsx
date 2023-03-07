@@ -4,8 +4,8 @@ import { getServerSession } from 'next-auth';
 import Router, { redirect } from 'next/navigation';
 import React from 'react';
 import { ReactNode } from 'react';
-import AuthContext from './AuthContext';
-import { ClientToastContainer } from './ClientToastContainer';
+import AuthContext from '@/components/AuthContext';
+import { ClientToastContainer } from '@/components/ClientToastContainer';
 interface IProps {
   children: ReactNode;
 }
@@ -16,7 +16,7 @@ export default async function RootLayout({ children }: IProps) {
   }
 
   return (
-    <html lang="en">
+    <html lang="en" className='dark'>
       {/* <Head>
         <title>Coin Fella</title>
       </Head> */}

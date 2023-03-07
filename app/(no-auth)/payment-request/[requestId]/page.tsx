@@ -9,17 +9,40 @@ import { fetcher } from '@/lib/utils';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import useSWR from 'swr';
+import { RampInstantSDK } from '@ramp-network/ramp-instant-sdk';
+import { RequestType } from '@/app/(site)/request/page';
+import { ApiResponse } from '@/lib/types';
 
 const PaymentRequest = ({ params }: { params: { requestId: string } }) => {
-  const { data, error, isLoading } = useSWR(
+  const { data, error, isLoading } = useSWR<ApiResponse<RequestType>>(
     `/api/requests/${params.requestId}`,
     fetcher,
     { revalidateOnFocus: false }
   );
   const session = useSession();
   const entity = data?.entity;
-    console.log(session);
-    
+
+  const openRamp = () => {
+    if (data == null || data == undefined || session.data?.user?.email == null)
+      return;
+
+    new RampInstantSDK({
+      hostAppName: 'Coinfella',
+      hostLogoUrl: 'https://www.coinfella.io/logo.png',
+      url: 'https://app.demo.ramp.network',
+      selectedCountryCode: 'US',
+      hostApiKey: process.env.NEXT_PUBLIC_RAMP_NETWORK_API_KEY,
+      enabledFlows: ['ONRAMP'],
+      defaultFlow: 'ONRAMP',
+      fiatCurrency: data.entity.fiatCurrency,
+      fiatValue: data.entity.amount.toString(),
+      
+      defaultAsset: data.entity.cryptoChain,
+      userAddress: data.entity.walletAddress,
+      userEmailAddress: session.data.user.email,
+      webhookStatusUrl: 'https://20e7-138-199-29-221.ngrok.io/api/payment-events/payment-status-update',
+    }).show();
+  };
   return (
     <div className="mx-auto max-w-2xl px-10 pt-10 md:px-0">
       {error && <>Failed to load request</>}
@@ -62,13 +85,22 @@ const PaymentRequest = ({ params }: { params: { requestId: string } }) => {
                 {data.entity.amount}
               </Text>
             </div>
-            <Link href={`/sign-in?request=${params.requestId}`}>
-              <Button className="w-full" color="primary">
-                {session.status == 'authenticated'
-                  ? `Pay as ${session.data.user?.name}`
-                  : 'Sign in and Pay'}
-              </Button>
-            </Link>
+            {session.status != 'authenticated' && (
+              <>
+                <Link href={`/sign-in?request=${params.requestId}`}>
+                  <Button className="w-full" color="primary">
+                    Sign in and Pay
+                  </Button>
+                </Link>
+              </>
+            )}
+            {session.status == 'authenticated' && (
+              <>
+                <Button className="w-full" color="primary" onClick={openRamp}>
+                  {`Pay as ${session.data.user?.name}`}
+                </Button>
+              </>
+            )}
           </div>
         </>
       )}

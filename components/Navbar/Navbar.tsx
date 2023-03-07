@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Disclosure } from "@headlessui/react";
-import { MENU_ICON } from "../lib/assets";
+import { MENU_ICON } from "@/lib/assets";
+import { LoginButton } from "./LoginButton";
+import { cn } from "@/lib/utils";
 
 export const Navbar = () => {
   const navigation = [
@@ -10,9 +12,7 @@ export const Navbar = () => {
     // { name: "Pricing", href: "#pricing", current: false },
     { name: "FAQ", href: "/faq", current: false },
   ];
-  function classNames(...classes: any) {
-    return classes.filter(Boolean).join(" ");
-  }
+   
   return (
     <header>
       <Disclosure
@@ -45,23 +45,24 @@ export const Navbar = () => {
                       </div>
                     </Link>
                   </div>
-                  <div className='hidden items-center sm:ml-6 sm:flex'>
+                  <div className='hidden items-center sm:ml-6 sm:flex w-full justify-between'>
                     <div className='flex space-x-4'>
                       {navigation.map((item) => (
                         <Link
                           key={item.name}
                           href={item.href}
-                          className={classNames(
+                          className={cn(
                             item.current
                               ? "bg-gray-900 text-white"
                               : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                            "rounded-md px-3 py-2 text-sm font-medium"
+                            "rounded-md px-3 py-2 text-base font-medium"
                           )}
                           aria-current={item.current ? "page" : undefined}>
                           {item.name}
                         </Link>
                       ))}
                     </div>
+                    <LoginButton/>
                   </div>
                 </div>
               </div>
@@ -74,7 +75,7 @@ export const Navbar = () => {
                     key={item.name}
                     as='a'
                     href={item.href}
-                    className={classNames(
+                    className={cn(
                       item.current
                         ? "bg-gray-900 text-white"
                         : "text-gray-300 hover:bg-gray-700 hover:text-white",
@@ -89,18 +90,7 @@ export const Navbar = () => {
           </>
         )}
       </Disclosure>
-      {/* <div className="relative mx-auto flex max-w-6xl items-center">
-        <div className="relative left-0 h-28 w-full max-w-[200px]">
-          <Image objectFit="contain" layout="fill" src="/logo.png" />
-        </div>
-        <div className="ml-28 flex justify-between">
-          <div className="flex gap-10 text-xl font-medium">
-            <Link href="#features">Features</Link>
-            <Link href="#pricing">Pricing</Link>
-            <Link href="/faq">FAQ</Link>
-          </div>
-        </div>
-      </div> */}
+       
     </header>
   );
 };

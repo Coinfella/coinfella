@@ -1,7 +1,7 @@
 'use client';
 
 import { cva, VariantProps } from 'cva';
-import { FCC } from '../lib/types';
+import { FCC } from '@/lib/types';
 import useRipple from 'use-ripple-hook';
 import { Spinner } from './Spinner';
 import { cn } from '@/lib/utils';
