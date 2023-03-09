@@ -16,6 +16,13 @@ export { default as TAG_ICON } from 'assets/icons/tag.svg';
 export { default as GOOGLE_ICON } from 'assets/icons/google.svg';
 export { default as FACEBOOK_ICON } from 'assets/icons/facebook.svg';
 
+export { default as DASHBOARD_ICON } from 'assets/icons/dashboard.svg';
+export { default as TRANSACTIONS_ICON } from 'assets/icons/transactions.svg';
+export { default as INVOICES_ICON } from 'assets/icons/invoices.svg';
+export { default as REQUESTS_ICON } from 'assets/icons/request.svg';
+export { default as CARDS_ICON } from 'assets/icons/cards.svg';
+export { default as SETTINGS_ICON } from 'assets/icons/settings.svg';
+
 export { default as COIN_FACE } from 'assets/images/coin-face.png';
 export { default as COIN_JUMP } from 'assets/images/coin-jump.png';
 export { default as LANDING_BANK } from 'assets/images/landing-bank.png';
@@ -26,6 +33,6 @@ export { default as PEOPLE } from 'assets/images/people.png';
 export { default as BUTTON_BG } from 'assets/images/btn-bg.png';
 export { default as DASHBOARD_SC } from 'assets/images/dashboard-sc.png';
 export { default as SIGN_IN } from 'assets/images/sign-in.png';
-export { default as SENT_ROCKET } from "assets/images/sent.png";
-export { default as ATTACH_DOC } from "assets/images/attachDoc.png";
-export { default as THUMBSUP } from "assets/images/thumbsup.png";
+export { default as SENT_ROCKET } from 'assets/images/sent.png';
+export { default as ATTACH_DOC } from 'assets/images/attachDoc.png';
+export { default as THUMBSUP } from 'assets/images/thumbsup.png';
