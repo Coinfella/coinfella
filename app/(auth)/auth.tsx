@@ -31,6 +31,7 @@ const Auth: React.FC<AuthProps> = ({ isLogin, searchParams }) => {
   const requestExists = searchParams.request;
 
   const registerUser = async () => {
+    // TODO: validate inputs
     axios
       .post(
         '/api/auth/register',
@@ -43,7 +44,7 @@ const Auth: React.FC<AuthProps> = ({ isLogin, searchParams }) => {
         }
       )
       .then(async () => {
-        // await loginUser();
+        await loginUser();
         if (requestExists) {
           router.push(`/payment-request/${requestExists}`);
         } else {
@@ -56,13 +57,14 @@ const Auth: React.FC<AuthProps> = ({ isLogin, searchParams }) => {
   };
 
   const loginUser = async () => {
+    // TODO: validate inputs
     const res: any = await signIn('credentials', {
       redirect: false,
       email: email,
       password: password,
     });
-    
-    if (res.status == "200") {
+    //TODO: Add error handling (showtoast)
+    if (res.status == '200') {
       if (requestExists) {
         router.push(`/payment-request/${requestExists}`);
       } else {
