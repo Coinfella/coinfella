@@ -86,7 +86,7 @@ const Input = memo(
         );
       } else if (type === 'textarea') {
         return (
-          <div className={`input-wrap ${className}`}>
+          <div>
             {label && <label htmlFor={labelId ?? label}>{label}</label>}
             {/* @ts-ignore */}
             <textarea
@@ -96,6 +96,10 @@ const Input = memo(
               placeholder={placeholder}
               value={value}
               disabled={disabled}
+              className={cn(
+                'mt-1 flex h-20 w-full rounded-md border border-slate-300 bg-gray-700 py-2 px-3 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900',
+                className
+              )}
               {...props}
             />
             <ErrorMessage
