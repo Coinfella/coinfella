@@ -15,13 +15,13 @@ export { default as DOLLAR_ICON } from 'assets/icons/dollar.svg';
 export { default as TAG_ICON } from 'assets/icons/tag.svg';
 export { default as GOOGLE_ICON } from 'assets/icons/google.svg';
 export { default as FACEBOOK_ICON } from 'assets/icons/facebook.svg';
-
 export { default as DASHBOARD_ICON } from 'assets/icons/dashboard.svg';
 export { default as TRANSACTIONS_ICON } from 'assets/icons/transactions.svg';
 export { default as INVOICES_ICON } from 'assets/icons/invoices.svg';
 export { default as REQUESTS_ICON } from 'assets/icons/request.svg';
 export { default as CARDS_ICON } from 'assets/icons/cards.svg';
 export { default as SETTINGS_ICON } from 'assets/icons/settings.svg';
+export { default as NOTIFICATION_ICON } from 'assets/icons/notification.svg';
 
 export { default as COIN_FACE } from 'assets/images/coin-face.png';
 export { default as COIN_JUMP } from 'assets/images/coin-jump.png';
