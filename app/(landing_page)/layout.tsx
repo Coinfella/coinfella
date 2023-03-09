@@ -5,7 +5,7 @@ import React from 'react';
 import { ReactNode } from 'react';
 import { ToastContainer } from 'react-toastify';
 import Head from 'next/head';
-import { Navbar } from '@/components/Navbar/Navbar';
+import { Navbar } from '@/app/(landing_page)/components/Navbar/Navbar';
 import Footer from '@/components/Footer';
 import { SessionProvider } from 'next-auth/react';
 
