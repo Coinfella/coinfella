@@ -80,7 +80,7 @@ const Sidebar = ({ path }: IProps) => {
         })}
       </div>
 
-      <div className="fixed bottom-0 z-10 flex h-16 w-full items-center justify-between bg-black md:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-10 flex  bg-black shadow md:hidden">
         {sidebarItems.map((item, i) => {
           return (
             <Link href={{ pathname: item.href }} key={i}>

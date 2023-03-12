@@ -21,12 +21,12 @@ export default async function RootLayout({ children }: IProps) {
 
   return (
     <html lang="en" className="dark">
-      <body className="flex min-h-screen flex-col flex-wrap overflow-hidden">
+      <body className="flex flex-1 flex-col overflow-hidden">
         <AuthContext>
           <Navbar />
           <div className="overflow-hidden md:flex">
             <ClientSidebar />
-            <div className="w-full flex-grow overflow-y-auto bg-[#1A1A1A] pb-16 md:pb-0">
+            <div className="min-h-screen flex-1 overflow-y-auto bg-[#1A1A1A] pb-20 md:pb-14">
               {children}
             </div>
           </div>
